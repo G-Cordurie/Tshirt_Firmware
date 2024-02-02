@@ -1,2 +1,2 @@
-# Tshirt_Firmware
-Dépôt initial partant du dernier code valisé de Aymen
+## TODO:
+- Update BL bsp (Delete buttons/leds, ...)

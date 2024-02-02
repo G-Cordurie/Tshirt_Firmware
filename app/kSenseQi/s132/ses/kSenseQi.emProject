@@ -1,0 +1,261 @@
+<!DOCTYPE CrossStudio_Project_File>
+<solution Name="kSenseQi" target="8" version="2">
+  <project Name="kSenseQi">
+    <configuration
+      Name="Common"
+      arm_architecture="v7EM"
+      arm_core_type="Cortex-M4"
+      arm_endian="Little"
+      arm_fp_abi="Hard"
+      arm_fpu_type="FPv4-SP-D16"
+      arm_linker_heap_size="1024"
+      arm_linker_process_stack_size="0"
+      arm_linker_stack_size="4096"
+      arm_linker_treat_warnings_as_errors="No"
+      arm_simulator_memory_simulation_parameter="RWX 00000000,00100000,FFFFFFFF;RWX 20000000,00010000,CDCDCDCD"
+      arm_target_device_name="nRF52832_xxAA"
+      arm_target_interface_type="SWD"
+      c_preprocessor_definitions="APP_TIMER_V2;APP_TIMER_V2_RTC1_ENABLED;BL_SETTINGS_ACCESS_ONLY;FLOAT_ABI_HARD;INITIALIZE_USER_SECTIONS;NO_VTOR_CONFIG;NRF52;NRF52832_XXAA;NRF52_PAN_74;NRF_DFU_SVCI_ENABLED;NRF_DFU_TRANSPORT_BLE=1;NRF_CRYPTO_MAX_INSTANCE_COUNT=1;NRF_SD_BLE_API_VERSION=7;S132;SOFTDEVICE_PRESENT;USE_AUTHORIZATION_CODE=1;CONFIG_NFCT_PINS_AS_GPIOS;ARM_MATH_CM4;HW_TYPE_0706=2;HW_TYPE=HW_TYPE_0706;HW_REV_0706=0;HW_REV_0706B=1"
+      c_user_include_directories="../../../config;$(SDK_ROOT)/components;$(SDK_ROOT)/components/ble/ble_advertising;$(SDK_ROOT)/components/ble/ble_services/ble_dfu;$(SDK_ROOT)/components/ble/common;$(SDK_ROOT)/components/ble/nrf_ble_gatt;$(SDK_ROOT)/components/ble/nrf_ble_qwr;$(SDK_ROOT)/components/ble/peer_manager;$(SDK_ROOT)/components/libraries/atomic;$(SDK_ROOT)/components/libraries/atomic_fifo;$(SDK_ROOT)/components/libraries/atomic_flags;$(SDK_ROOT)/components/libraries/balloc;$(SDK_ROOT)/components/libraries/bootloader;$(SDK_ROOT)/components/libraries/bootloader/ble_dfu;$(SDK_ROOT)/components/libraries/bootloader/dfu;$(SDK_ROOT)/components/libraries/bsp;$(SDK_ROOT)/components/libraries/button;$(SDK_ROOT)/components/libraries/crc16;$(SDK_ROOT)/components/libraries/crc32;$(SDK_ROOT)/components/libraries/delay;$(SDK_ROOT)/components/libraries/experimental_section_vars;$(SDK_ROOT)/components/libraries/fds;$(SDK_ROOT)/components/libraries/fstorage;$(SDK_ROOT)/components/libraries/log;$(SDK_ROOT)/components/libraries/log/src;$(SDK_ROOT)/components/libraries/memobj;$(SDK_ROOT)/components/libraries/mutex;$(SDK_ROOT)/components/libraries/pwr_mgmt;$(SDK_ROOT)/components/libraries/queue;$(SDK_ROOT)/components/libraries/spi_mngr;$(SDK_ROOT)/components/libraries/ringbuf;$(SDK_ROOT)/components/libraries/scheduler;$(SDK_ROOT)/components/libraries/sortlist;$(SDK_ROOT)/components/libraries/strerror;$(SDK_ROOT)/components/libraries/svc;$(SDK_ROOT)/components/libraries/timer;$(SDK_ROOT)/components/libraries/util;$(SDK_ROOT)/components/softdevice/common;$(SDK_ROOT)/components/softdevice/s132/headers;$(SDK_ROOT)/components/softdevice/s132/headers/nrf52;$(SDK_ROOT)/components/toolchain/cmsis/include;$(SDK_ROOT)/external/fprintf;$(SDK_ROOT)/external/segger_rtt;$(SDK_ROOT)/integration/nrfx;$(SDK_ROOT)/integration/nrfx/legacy;$(SDK_ROOT)/modules/nrfx;$(SDK_ROOT)/modules/nrfx/drivers/include;$(SDK_ROOT)/modules/nrfx/hal;$(SDK_ROOT)/modules/nrfx/mdk;../config;../../..;$(SDK_ROOT)/components/ble/ble_services/ble_bas;$(SDK_ROOT)/components/ble/ble_services/ble_dis;$(SDK_ROOT)/components/libraries/uart;$(SDK_ROOT)/components/toolchain/cmsis/dsp/Include;../../../modules/adc;../../../modules/acc;../../../modules/adg714;../../../modules/ble;../../../modules/storage;../../../modules/debug;../../../modules/ecg;../../../modules/imp;../../../modules/led;../../../modules/auto_diag;../../../modules/battery;../../../modules/breath;../../../modules/dac;../../../modules/data_acq;../../../modules/pwr_reg;../../../modules/spi_mngr;../../../modules/temp;../../../modules/rtc;../../../modules/utils;../../../boards;../../../modules/pwr_mngr;../../../modules/data_session;../../../modules/clock;../../../modules/timer;$(SDK_ROOT)/components/libraries/hardfault;$(SDK_ROOT)/components/libraries/hardfault/nrf52;../../../modules/stack_guard;$(SDK_ROOT)/components/libraries/mpu;$(SDK_ROOT)/components/libraries/stack_info;$(SDK_ROOT)/components/libraries/gpiote;$(SDK_ROOT)/external/utf_converter;$(SDK_ROOT)/components/libraries/mpu;$(SDK_ROOT)/components/libraries/slip;$(SDK_ROOT)/components/libraries/stack_info;$(SDK_ROOT)/components/libraries/ecc;$(SDK_ROOT)/components/libraries/crc32;$(SDK_ROOT)/components/libraries/mem_manager;$(SDK_ROOT)/components/ble/ble_racp;$(SDK_ROOT)/components/ble/nrf_ble_gq;$(SDK_ROOT)/components/libraries/crypto/backend/micro_ecc;$(SDK_ROOT)/external/mbedtls/include;$(SDK_ROOT)/external/nrf_cc310/include;$(SDK_ROOT)/external/nrf_oberon;$(SDK_ROOT)/external/nrf_oberon/include;$(SDK_ROOT)/components/libraries/crypto/backend/oberon;$(SDK_ROOT)/components/libraries/crypto/backend/nrf_hw;$(SDK_ROOT)/components/libraries/crypto/backend/cc310_bl;$(SDK_ROOT)/external/nrf_tls/mbedtls/nrf_crypto/config;$(SDK_ROOT)/components/libraries/crypto/backend/optiga;$(SDK_ROOT)/components/libraries/crypto/backend/nrf_sw;$(SDK_ROOT)/components/libraries/crypto/backend/mbedtls;$(SDK_ROOT)/components/libraries/crypto/backend/cc310;$(SDK_ROOT)/components/libraries/crypto;$(SDK_ROOT)/components/libraries/crypto/backend/cifra;$(SDK_ROOT)/components/ble/ble_services/nrf_ble_bms;$(SDK_ROOT)/components/ble/ble_link_ctx_manager;$(SDK_ROOT)/external/nano-pb"
+      debug_additional_load_file="$(SDK_ROOT)/components/softdevice/s132/hex/s132_nrf52_7.3.0_softdevice.hex"
+      debug_additional_load_file1="$(OutDir)/settings.hex"
+      debug_additional_load_file2="../../../btl_bin/btl_diagW_s132_ble.hex"
+      debug_register_definition_file="$(SDK_ROOT)/modules/nrfx/mdk/nrf52.svd"
+      debug_start_from_entry_point_symbol="No"
+      debug_target_connection="J-Link"
+      gcc_debugging_level="Level 3"
+      gcc_entry_point="Reset_Handler"
+      linker_output_format="hex"
+      linker_printf_fmt_level="long"
+      linker_printf_fp_enabled="Double"
+      linker_printf_width_precision_supported="Yes"
+      linker_scanf_fmt_level="long"
+      linker_section_placement_file="flash_placement.xml"
+      linker_section_placement_macros="FLASH_PH_START=0x0;FLASH_PH_SIZE=0x80000;RAM_PH_START=0x20000000;RAM_PH_SIZE=0x10000;FLASH_START=0x26000;FLASH_SIZE=0x52000;RAM_START=0x20002E78;RAM_SIZE=0xD188"
+      linker_section_placements_segments="FLASH1 RX 0x0 0x80000;RAM1 RWX 0x20000000 0x10000;uicr_bootloader_start_address RX 0x10001014 0x4"
+      macros="CMSIS_CONFIG_TOOL=$(SDK_ROOT)/external_tools/cmsisconfig/CMSIS_Configuration_Wizard.jar"
+      post_build_command="sh post_build.sh $(ProjectName) $(OutDir)"
+      project_directory=""
+      project_type="Executable" />
+    <folder Name="Segger Startup Files">
+      <file file_name="$(StudioDir)/source/thumb_crt0.s" />
+    </folder>
+    <folder Name="nRF_Log">
+      <file file_name="$(SDK_ROOT)/components/libraries/log/src/nrf_log_backend_rtt.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/log/src/nrf_log_backend_serial.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/log/src/nrf_log_backend_uart.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/log/src/nrf_log_default_backends.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/log/src/nrf_log_frontend.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/log/src/nrf_log_str_formatter.c" />
+    </folder>
+    <folder Name="Third Parties">
+      <file file_name="$(SDK_ROOT)/components/toolchain/cmsis/dsp/GCC/libarm_cortexM4lf_math.a" />
+      <file file_name="$(SDK_ROOT)/external/nrf_oberon/lib/cortex-m4/hard-float/liboberon_3.0.8.a" />
+    </folder>
+    <folder Name="Board Definition">
+      <file file_name="../../../boards/boards.h" />
+    </folder>
+    <folder Name="None">
+      <file file_name="$(SDK_ROOT)/modules/nrfx/mdk/ses_startup_nrf52.s" />
+      <file file_name="$(SDK_ROOT)/modules/nrfx/mdk/ses_startup_nrf_common.s" />
+      <file file_name="$(SDK_ROOT)/modules/nrfx/mdk/system_nrf52.c" />
+    </folder>
+    <folder Name="nRF_Libraries">
+      <file file_name="$(SDK_ROOT)/components/libraries/button/app_button.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/util/app_error.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/util/app_error_handler_gcc.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/util/app_error_weak.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/scheduler/app_scheduler.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/timer/app_timer2.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/util/app_util_platform.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/crc16/crc16.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/crc32/crc32.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/timer/drv_rtc.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/fds/fds.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/util/nrf_assert.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/atomic_fifo/nrf_atfifo.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/atomic_flags/nrf_atflags.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/atomic/nrf_atomic.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/balloc/nrf_balloc.c" />
+      <file file_name="$(SDK_ROOT)/external/fprintf/nrf_fprintf.c" />
+      <file file_name="$(SDK_ROOT)/external/fprintf/nrf_fprintf_format.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/fstorage/nrf_fstorage.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/fstorage/nrf_fstorage_sd.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/memobj/nrf_memobj.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/pwr_mgmt/nrf_pwr_mgmt.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/queue/nrf_queue.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/ringbuf/nrf_ringbuf.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/experimental_section_vars/nrf_section_iter.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/sortlist/nrf_sortlist.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/spi_mngr/nrf_spi_mngr.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/strerror/nrf_strerror.c" />
+    </folder>
+    <folder Name="nRF_Drivers">
+      <file file_name="$(SDK_ROOT)/integration/nrfx/legacy/nrf_drv_clock.c" />
+      <file file_name="$(SDK_ROOT)/integration/nrfx/legacy/nrf_drv_spi.c" />
+      <file file_name="$(SDK_ROOT)/integration/nrfx/legacy/nrf_drv_uart.c" />
+      <file file_name="$(SDK_ROOT)/modules/nrfx/soc/nrfx_atomic.c" />
+      <file file_name="$(SDK_ROOT)/modules/nrfx/drivers/src/nrfx_clock.c" />
+      <file file_name="$(SDK_ROOT)/modules/nrfx/drivers/src/nrfx_gpiote.c" />
+      <file file_name="$(SDK_ROOT)/modules/nrfx/drivers/src/prs/nrfx_prs.c" />
+      <file file_name="$(SDK_ROOT)/modules/nrfx/drivers/src/nrfx_spi.c" />
+      <file file_name="$(SDK_ROOT)/modules/nrfx/drivers/src/nrfx_spim.c" />
+      <file file_name="$(SDK_ROOT)/modules/nrfx/drivers/src/nrfx_uart.c" />
+      <file file_name="$(SDK_ROOT)/modules/nrfx/drivers/src/nrfx_uarte.c" />
+      <file file_name="$(SDK_ROOT)/modules/nrfx/drivers/src/nrfx_rtc.c" />
+    </folder>
+    <folder Name="Board Support">
+      <file file_name="../../../boards/0706.h" />
+    </folder>
+    <folder Name="Application">
+      <file file_name="../../../main.c" />
+      <file file_name="../config/sdk_config.h" />
+      <file file_name="../config/app_config.h" />
+      <file file_name="../../../modules/debug/debug.c" />
+      <file file_name="../../../modules/led/led.c" />
+      <file file_name="../../../modules/battery/battery.c" />
+      <file file_name="../../../modules/battery/battery_soc.c" />
+      <file file_name="../../../modules/ble/ble_bas.c" />
+      <file file_name="../../../modules/ble/app_ble_mngr.c" />
+      <file file_name="../../../modules/ble/app_ble_gatt.c" />
+      <file file_name="../../../modules/ble/app_ble_gap.c" />
+      <file file_name="../../../modules/ble/ble_diagw.c" />
+      <file file_name="../../../modules/ble/app_ble_sm.c" />
+      <file file_name="../../../modules/data_acq/data_acq.c" />
+      <file file_name="$(SDK_ROOT)/integration/nrfx/legacy/nrf_drv_ppi.c" />
+      <file file_name="$(SDK_ROOT)/modules/nrfx/drivers/src/nrfx_ppi.c" />
+      <file file_name="../../../modules/adc/nrfx_saadc.c" />
+      <file file_name="$(SDK_ROOT)/modules/nrfx/drivers/src/nrfx_timer.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/uart/app_uart.c" />
+      <file file_name="../../../modules/imp/imp.c" />
+      <file file_name="../../../modules/dac/dac.c" />
+      <file file_name="../../../modules/dac/dac_spi.c" />
+      <file file_name="../../../modules/adg714/adg714.c" />
+      <file file_name="../../../modules/acc/acc.c" />
+      <file file_name="../../../modules/spi_mngr/spim0_mngr.c" />
+      <file file_name="../../../modules/temp/temp.c" />
+      <file file_name="../../../modules/ecg/ecg.c" />
+      <file file_name="../../../modules/pwr_reg/pwr_reg.c" />
+      <file file_name="../../../modules/auto_diag/auto_diag.c" />
+      <file file_name="../../../modules/auto_diag/moving_avg_filter.c" />
+      <file file_name="../../../modules/adc/adc.c" />
+      <file file_name="../../../modules/rtc/rtc.c" />
+      <file file_name="../../../modules/storage/spi_flash.c" />
+      <file file_name="../../../modules/storage/flash_drv.c" />
+      <file file_name="../../../modules/storage/storage.c" />
+      <file file_name="$(SDK_ROOT)/components/ble/ble_services/ble_dis/ble_dis.c" />
+      <file file_name="$(SDK_ROOT)/components/ble/ble_services/ble_nus/ble_nus.c" />
+      <file file_name="../../../modules/ble/app_ble_svc_nus.c" />
+      <file file_name="$(SDK_ROOT)/components/ble/ble_link_ctx_manager/ble_link_ctx_manager.c" />
+      <file file_name="../../../modules/adc/adc_cb.c" />
+      <file file_name="../../../modules/pwr_mngr/pwr_mngr.c" />
+      <file file_name="../../../modules/breath/breath.c" />
+      <file file_name="../../../modules/data_session/data_session.c" />
+      <file file_name="../../../modules/clock/clock.c" />
+      <file file_name="../../../modules/utils/utils.c" />
+      <file file_name="../../../modules/timer/timer.c" />
+      <file file_name="../../../modules/ble/app_ble_svc_bas.c" />
+      <file file_name="../../../modules/battery/battery_chrgr.c" />
+      <file file_name="../../../modules/ble/app_ble_svc_qwr.c" />
+      <file file_name="../../../modules/ble/app_ble_svc_bms.c" />
+      <file file_name="../../../modules/stack_guard/nrf_stack_guard.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/hardfault/nrf52/handler/hardfault_handler_gcc.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/hardfault/hardfault_implementation.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/mpu/nrf_mpu_lib.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/mem_manager/mem_manager.c" />
+      <file file_name="$(SDK_ROOT)/integration/nrfx/legacy/nrf_drv_rng.c" />
+      <file file_name="$(SDK_ROOT)/external/mbedtls/library/aes.c" />
+      <file file_name="$(SDK_ROOT)/external/mbedtls/library/ctr_drbg.c" />
+      <file file_name="$(SDK_ROOT)/external/mbedtls/library/platform_util.c" />
+      <file file_name="$(SDK_ROOT)/components/ble/ble_racp/ble_racp.c" />
+      <file file_name="$(SDK_ROOT)/components/ble/nrf_ble_gq/nrf_ble_gq.c" />
+      <file file_name="$(SDK_ROOT)/external/utf_converter/utf.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/crypto/nrf_crypto_aead.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/crypto/nrf_crypto_aes.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/crypto/nrf_crypto_aes_shared.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/crypto/nrf_crypto_ecc.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/crypto/nrf_crypto_ecdh.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/crypto/nrf_crypto_ecdsa.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/crypto/nrf_crypto_eddsa.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/crypto/nrf_crypto_error.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/crypto/nrf_crypto_hash.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/crypto/nrf_crypto_hkdf.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/crypto/nrf_crypto_hmac.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/crypto/nrf_crypto_init.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/crypto/nrf_crypto_rng.c" />
+      <file file_name="$(SDK_ROOT)/modules/nrfx/drivers/src/nrfx_rng.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/crypto/nrf_crypto_shared.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/crypto/backend/nrf_hw/nrf_hw_backend_init.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/crypto/backend/nrf_hw/nrf_hw_backend_rng.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/crypto/backend/nrf_hw/nrf_hw_backend_rng_mbedtls.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/crypto/backend/oberon/oberon_backend_chacha_poly_aead.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/crypto/backend/oberon/oberon_backend_ecc.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/crypto/backend/oberon/oberon_backend_ecdh.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/crypto/backend/oberon/oberon_backend_ecdsa.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/crypto/backend/oberon/oberon_backend_eddsa.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/crypto/backend/oberon/oberon_backend_hash.c" />
+      <file file_name="$(SDK_ROOT)/components/libraries/crypto/backend/oberon/oberon_backend_hmac.c" />
+      <file file_name="$(SDK_ROOT)/components/ble/ble_services/nrf_ble_bms/nrf_ble_bms.c" />
+      <file file_name="$(SDK_ROOT)/external/nano-pb/pb_common.c" />
+      <file file_name="$(SDK_ROOT)/external/nano-pb/pb_encode.c" />
+      <file file_name="$(SDK_ROOT)/external/nano-pb/pb_decode.c" />
+      <file file_name="../../../modules/storage/md.pb.c" />
+    </folder>
+    <folder Name="nRF_SVC">
+      <file file_name="$(SDK_ROOT)/components/libraries/bootloader/dfu/nrf_dfu_svci.c" />
+    </folder>
+    <folder Name="nRF_Segger_RTT">
+      <file file_name="$(SDK_ROOT)/external/segger_rtt/SEGGER_RTT.c" />
+      <file file_name="$(SDK_ROOT)/external/segger_rtt/SEGGER_RTT_Syscalls_SES.c" />
+      <file file_name="$(SDK_ROOT)/external/segger_rtt/SEGGER_RTT_printf.c" />
+    </folder>
+    <folder Name="nRF_BLE">
+      <file file_name="$(SDK_ROOT)/components/ble/peer_manager/auth_status_tracker.c" />
+      <file file_name="$(SDK_ROOT)/components/ble/common/ble_advdata.c" />
+      <file file_name="$(SDK_ROOT)/components/ble/ble_advertising/ble_advertising.c" />
+      <file file_name="$(SDK_ROOT)/components/ble/common/ble_conn_params.c" />
+      <file file_name="$(SDK_ROOT)/components/ble/common/ble_conn_state.c" />
+      <file file_name="$(SDK_ROOT)/components/ble/common/ble_srv_common.c" />
+      <file file_name="../../../modules/ble/gatt_cache_manager.c" />
+      <file file_name="$(SDK_ROOT)/components/ble/peer_manager/gatts_cache_manager.c" />
+      <file file_name="$(SDK_ROOT)/components/ble/peer_manager/id_manager.c" />
+      <file file_name="$(SDK_ROOT)/components/ble/nrf_ble_gatt/nrf_ble_gatt.c" />
+      <file file_name="$(SDK_ROOT)/components/ble/nrf_ble_qwr/nrf_ble_qwr.c" />
+      <file file_name="$(SDK_ROOT)/components/ble/peer_manager/nrf_ble_lesc.c" />
+      <file file_name="$(SDK_ROOT)/components/ble/peer_manager/peer_data_storage.c" />
+      <file file_name="$(SDK_ROOT)/components/ble/peer_manager/peer_database.c" />
+      <file file_name="$(SDK_ROOT)/components/ble/peer_manager/peer_id.c" />
+      <file file_name="$(SDK_ROOT)/components/ble/peer_manager/peer_manager.c" />
+      <file file_name="$(SDK_ROOT)/components/ble/peer_manager/peer_manager_handler.c" />
+      <file file_name="$(SDK_ROOT)/components/ble/peer_manager/pm_buffer.c" />
+      <file file_name="$(SDK_ROOT)/components/ble/peer_manager/security_dispatcher.c" />
+      <file file_name="$(SDK_ROOT)/components/ble/peer_manager/security_manager.c" />
+    </folder>
+    <folder Name="nRF_DFU">
+      <file file_name="$(SDK_ROOT)/components/ble/ble_services/ble_dfu/ble_dfu.c" />
+      <file file_name="$(SDK_ROOT)/components/ble/ble_services/ble_dfu/ble_dfu_bonded.c" />
+      <file file_name="$(SDK_ROOT)/components/ble/ble_services/ble_dfu/ble_dfu_unbonded.c" />
+    </folder>
+    <folder Name="nRF_SoftDevice">
+      <file file_name="$(SDK_ROOT)/components/softdevice/common/nrf_sdh.c" />
+      <file file_name="$(SDK_ROOT)/components/softdevice/common/nrf_sdh_ble.c" />
+      <file file_name="$(SDK_ROOT)/components/softdevice/common/nrf_sdh_soc.c" />
+    </folder>
+    <configuration
+      Name="Debug_0706b"
+      c_preprocessor_definitions="HW_REV=HW_REV_0706B;HW_REV_STR=&quot;0706cp&quot;" />
+    <configuration
+      Name="Release_0706b"
+      c_preprocessor_definitions="HW_REV=HW_REV_0706B;HW_REV_STR=&quot;0706cp&quot;" />
+  </project>
+  <configuration
+    Name="Release_0706b"
+    c_preprocessor_definitions="NDEBUG"
+    gcc_optimization_level="Optimize For Size"
+    link_time_optimization="No" />
+  <configuration
+    Name="Debug_0706b"
+    c_preprocessor_definitions="DEBUG;DEBUG_NRF"
+    gcc_optimization_level="None"
+    speed="8000" />
+</solution>

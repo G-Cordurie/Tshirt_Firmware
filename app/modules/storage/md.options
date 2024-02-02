@@ -1,0 +1,4 @@
+#options
+
+md_raw_data_item.payload max_size:15
+md_data_chunk.data max_count:9

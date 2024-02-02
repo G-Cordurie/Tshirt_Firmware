@@ -1,0 +1,7 @@
+sdk/
+_build/
+Output/
+*.emSession
+*.jlink
+*.code-workspace
+*.ini

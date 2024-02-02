@@ -1,0 +1,100 @@
+syntax = "proto3";
+
+enum data_type {
+    UNKNOWN         = 0;
+    ECG             = 1;
+    BREATH          = 2;
+    TEMP            = 3;
+    IMP             = 4;
+    MEM_DUMP        = 5;
+    ACC             = 6;
+    MEM_DUMP_CTRLPT = 7; 
+}
+
+enum md_cmd_id {
+    NO_COMMAND          = 0;
+    START_TRANSFERT     = 1;
+    INFO_REQUEST        = 2;
+    INFO_RESPONSE       = 3;
+    BLOCK_REQUEST       = 4;
+    DATA_CHUNK          = 5;
+    STOP_TRANSFERT      = 6;
+    TRANSFERT_COMPLETE  = 7;
+    TRANSFERT_ERROR     = 8;
+    MEM_PERCENT         = 9;
+}
+
+enum md_error_type {
+    NO_ERROR                = 0;
+    CHUNK_SEQ_NUMBER_ERR    = 1;
+}
+
+enum md_state {
+    IDLE    = 0;
+    PREPARE = 1;
+    IN_PROGRESS = 2;
+    COMPLETED = 3;
+}
+
+message md_start_transfert_cmd {
+    md_cmd_id cmd_id = 1;
+}
+
+message md_transfert_complete_cmd {
+    md_cmd_id cmd_id = 1;
+}
+
+message md_stop_transfert_cmd {
+    md_cmd_id cmd_id = 1;
+}
+
+message md_transfert_error_cmd {
+    md_cmd_id cmd_id = 1;
+    md_error_type err_type = 2;
+    uint32 block_addr = 3;
+    uint32 seq_number = 4;
+}
+
+message md_mem_percent_cmd {
+    md_cmd_id cmd_id = 1;
+    uint32 mem_percent = 2;
+}
+
+message md_info_req_cmd {
+    md_cmd_id cmd_id = 1;
+}
+
+message md_info_resp_cmd {
+    md_cmd_id cmd_id = 1;
+    uint32 start_block_addr = 2;
+    uint32 end_block_addr = 3;
+    uint32 total_block_nbr = 4;
+    uint32 mem_min_block_addr = 5;
+    uint32 mem_max_block_addr = 6;
+}
+
+
+message md_ctrlpt_cmd {
+    oneof cmd {
+        md_start_transfert_cmd start_transfert = 1;
+        md_transfert_complete_cmd transfert_complete = 2;
+        md_stop_transfert_cmd stop_transfert = 3;
+        md_transfert_error_cmd transfert_error = 4;
+        md_mem_percent_cmd mem_percent = 5;
+        md_info_req_cmd info_req = 6;
+        md_info_resp_cmd info_resp = 7;
+    }
+}
+
+message md_raw_data_item {
+    data_type type = 1;
+    uint64 timestamp = 2;
+    bytes payload = 3;
+}
+
+message md_data_chunk{
+    md_cmd_id cmd_id = 1;
+    uint32 block_addr = 2;
+    uint32 seq_number = 3;
+    repeated md_raw_data_item data = 4;
+}
