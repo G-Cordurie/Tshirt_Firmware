@@ -1,0 +1,70 @@
+Sur le PC en local :
+	Créer un dossier
+	Ouvrir le dossier
+	click droit -> open Git Bash here
+		-> une fenetre style DOS s'ouvre
+	Si il n'y a pas l'option open Git Bash here, c'est que git n'est pas installé -> voir installation plus bas.
+
+Dans cette fenetre :
+	git init : cette commande initialise un "empty repository".
+		-> un répertoire .git est créé dans le dossier courant (dossier caché pas forcément visible par défaut).
+
+Sur github.com :
+	Se logger.
+	new repository en lui donnant un nom et un minimum d'explications pour s'y retrouver ultérieurement.
+		-> on récupère une adresse https du dépot que l'on copie.
+
+En local, sous bash :
+	git remote add origin https.... (en collant l'adresse avec un click molette).
+
+	Ajouter ses travaux (documents texte, codes, ....) dans le répertoire.
+
+	git add .  -> mise en zone de souvegarde des fichiers créés ou modifiés, mais sans sauvegarde.
+
+	Git commit -m "ajouter ici les commentaires relatif à la version que l'on sauvegarde" -> les modifs sont suvgardées en local.
+
+	git push -u origin master (ou main, à voir ce qui s'affiche dans le bash) -> la version est sauvegardée sur github.
+
+Sur github :
+	Dans le repository que l'on a créé, raffraichir l'affichage : on doit voir apparaitre les fichiers/dossiers sauvegardés.
+
+
+
+Installation et configuration sur PC :
+
+Installation : 
+	Télécharger git et l'installer (download à partir de https://git-scm/downloads).
+
+Configuration : 
+	git config --global user.name "votre nom"
+	git config --global user.email votre@mail.com
+Vérification :
+	git config --global --list -> vos parametre vont appparaitre
+
+
+
+Travail sur plusieurs PC :
+Commencer par la création d'un dossier comme vu précédemment sur un premier PC.
+
+Sur github.com, récupérer l'adresse https du dépot que l'on copie
+
+Créer un répertoire sur un second PC.
+
+click droit -> open Git Bash here
+
+git clone "click molette"
+	->on clone le depot à cette endroit
+
+
+
+Branches :
+git branch
+	->affiche toute les branches dispo
+
+git branch "nom de branche"
+	-> créer la branche "nom de branche"
+
+git checkout "nom de branche"
+	-> bascule sur la branche "nom de branche"
+
+
