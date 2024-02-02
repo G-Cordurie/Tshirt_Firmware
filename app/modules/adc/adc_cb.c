@@ -8,6 +8,7 @@
 #include "data_session.h"
 #include "ecg.h"
 #include "imp.h"
+#include "led.h"
 #include "storage.h"
 #include "temp.h"
 
@@ -21,6 +22,9 @@
 #define BREATH_SAMPLES_BUFFER_LEN 3U * SAADC_MEDIC_CH_SAMPLES
 
 #include "arm_math.h"
+
+/*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 
 static void saadc_medic_callback(nrf_drv_saadc_evt_t const *p_event)
 {
@@ -55,6 +59,7 @@ static void saadc_medic_callback(nrf_drv_saadc_evt_t const *p_event)
         }
 
         ecg_samples_cntr -= ECG_SAMPLES_CNT;
+        nrf_gpio_pin_toggle(LED0);
     }
 
     // Breath
@@ -163,6 +168,9 @@ static void saadc_medic_callback(nrf_drv_saadc_evt_t const *p_event)
         ring_store(ACC_TYPE, acc_ble_buffer, sizeof(acc_ble_buffer));
     }
 }
+
+/*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 
 /**@brief SAADC Callback
  *

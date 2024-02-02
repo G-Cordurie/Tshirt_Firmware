@@ -19,8 +19,8 @@
 
 #define INFO(f_, ...)
 #define LED_OFF() led0_off()
-#define LED_ON()  LED_OFF() // LED is forced to OFF in release mode
-
+#define LED_ON()  led0_on()     // LED is forced to OFF in release mode
+                                //  modif temporaire de GC
 #endif
 
 void log_init(void);
