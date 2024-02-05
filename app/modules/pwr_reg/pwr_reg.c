@@ -11,6 +11,8 @@
 
 static volatile bool reg_enabled = false;
 
+/*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /**
  * SStime (sec) = (Tstart-up at 0 pF) + ((0.6 × Css )/Iss)
  * Tstart-up at 0 pF = 380.0E-6
@@ -24,27 +26,33 @@ void pwr_ldo_reg_enable(void)
 {
     if (!reg_enabled)
     {
-        nrf_gpio_pin_clear(CMDE_OFF);
+        nrf_gpio_pin_set(CMDE_OFF);       //Pour hard tshirt : nrf_gpio_pin_clear(CMDE_OFF);
         nrf_gpio_cfg_output(CMDE_OFF);
 
         for (uint16_t i = 0; i < REG_EN_STEPS; i++)
         {
-            nrf_gpio_pin_clear(CMDE_OFF);
+            nrf_gpio_pin_set(CMDE_OFF);     //Tshirt : nrf_gpio_pin_clear(CMDE_OFF);
             nrf_delay_us(i);
-            nrf_gpio_pin_set(CMDE_OFF);
+            nrf_gpio_pin_clear(CMDE_OFF);   //Tshirt : nrf_gpio_pin_set(CMDE_OFF);
             nrf_delay_us(REG_EN_STEPS - i);
         }
 
-        nrf_gpio_pin_clear(CMDE_OFF);
+        nrf_gpio_pin_set(CMDE_OFF);         //Tshirt : nrf_gpio_pin_clear(CMDE_OFF);
 
         reg_enabled = true;
     }
 }
 
+/*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
+
 void pwr_ldo_reg_disable(void)
 {
-    nrf_gpio_pin_set(CMDE_OFF);
+    nrf_gpio_pin_clear(CMDE_OFF);         //Pour hard tshirt : nrf_gpio_pin_set(CMDE_OFF);
     nrf_gpio_cfg_output(CMDE_OFF);
     nrf_delay_ms(REG_STARTUP_TIME_MS);
     reg_enabled = false;
 }
+
+/*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/

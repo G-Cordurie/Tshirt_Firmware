@@ -9,6 +9,9 @@
 
 static volatile bool m_dac_initialized = false;
 
+/*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
+
 void dac_init(void)
 {
     if (!m_dac_initialized)
@@ -18,6 +21,8 @@ void dac_init(void)
     }
 }
 
+/*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /**
  * @brief Stop the stimulation DAC used for impedance by setting his status to 0 in 1 1 mode (unconnected)
  *

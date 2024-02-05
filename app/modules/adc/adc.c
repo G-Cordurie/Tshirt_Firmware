@@ -35,6 +35,9 @@ static void pan_212_workaround(uint32_t flag)
     *((volatile uint32_t *)0x40007FFC) = flag;
 }
 
+/*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
+
 static void adc_medic_channels_init(void)
 {
     ret_code_t err_code;
@@ -205,6 +208,9 @@ static void adc_sampling_evt_init(const saadc_tmr_cfg_t *const saadc_tmr_cfg)
     APP_ERROR_CHECK(err_code);
 }
 
+/*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
+
 void adc_medic_init(nrf_drv_saadc_event_handler_t event_handler)
 {
     ret_code_t             err_code;
@@ -236,6 +242,9 @@ void adc_medic_init(nrf_drv_saadc_event_handler_t event_handler)
 
     INFO("Medic. sampling...");
 }
+
+/*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 
 void adc_battery_init(nrf_drv_saadc_event_handler_t event_handler)
 {
@@ -379,10 +388,16 @@ float64_t adc_buffer_avg(nrf_saadc_value_t const *const data, uint8_t len)
     return 0.0;
 }
 
+/*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
+
 void adc_medic_meas_init(void)
 {
     adc_medic_init(saadc_callback);
 }
+
+/*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 
 void adc_meas_stop(void)
 {

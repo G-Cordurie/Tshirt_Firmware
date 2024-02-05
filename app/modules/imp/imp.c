@@ -27,6 +27,9 @@ uint16_t STIM[IMP_STIM_SIN_PT_NBR] = {
 static const uint8_t chIdTochCmdTable[IMP_CH_NBR * ADG714_CMD_LEN] = {
     [IMP_CH0] = CH0_ON_CMD, [IMP_CH1] = CH1_ON_CMD, [IMP_CH2] = CH2_ON_CMD, [IMP_CH3] = CH3_ON_CMD};
 
+/*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
+
 void imp_stimulus_init(void)
 {
     static uint8_t initialized = 0;
@@ -41,6 +44,9 @@ void imp_stimulus_init(void)
         initialized = 1;
     }
 }
+
+/*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 
 void imp_ch_switch_on(imp_ch_id_t chId)
 {

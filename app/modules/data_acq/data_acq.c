@@ -22,22 +22,31 @@ typedef enum data_acq_state_tag
 
 static volatile data_acq_state_t m_next_state = IDLE_STATE;
 
+/*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
+
 void medic_meas_start(void)
 {
     adc_meas_stop();
     pwr_ldo_reg_enable();
-    battery_switch_enable();
+    //battery_switch_enable();
     ecg_init();
-    dac_disconnect();
-    imp_ch_switch_off();
+    //dac_disconnect();
+    //imp_ch_switch_off();
     acc_spi_init();
     adc_medic_meas_init();
 }
+
+/*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 
 void medic_meas_stop(void)
 {
     adc_meas_stop();
 }
+
+/*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 
 static data_acq_state_t idle_state_hanlder(void)
 {
@@ -102,6 +111,9 @@ static data_acq_state_t battery_meas_state_hanlder(void)
 }
 #endif
 
+/*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
+
 void data_acq_task(void)
 {
     if (mem_dump_in_progress())
@@ -111,25 +123,25 @@ void data_acq_task(void)
 
     switch (m_next_state)
     {
-    case IDLE_STATE:
-        m_next_state = idle_state_hanlder();
-        break;
+        case IDLE_STATE:
+            m_next_state = idle_state_hanlder();
+            break;
 
-    case MEDIC_MEAS_STATE:
-        m_next_state = medic_meas_state_hanlder();
-        break;
+        case MEDIC_MEAS_STATE:
+            m_next_state = medic_meas_state_hanlder();
+            break;
 
-    case IMP_MEAS_STATE:
-        m_next_state = imp_meas_state_hanlder();
-        break;
+        case IMP_MEAS_STATE:
+            m_next_state = imp_meas_state_hanlder();
+            break;
 
-#if 0
-    case BATTERY_MEAS_STATE:
-        m_next_state = battery_meas_state_hanlder();
-        break;
-#endif
+        #if 0
+            case BATTERY_MEAS_STATE:
+                m_next_state = battery_meas_state_hanlder();
+                break;
+        #endif
 
-    default:
-        break;
+        default:
+            break;
     }
 }
