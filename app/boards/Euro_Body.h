@@ -35,7 +35,7 @@
 #define INTB 8U
 #define INT2B 13U
 
-#define ECG_IN NRF_SAADC_INPUT_AIN5
+#define ECG_IN NRF_SAADC_INPUT_AIN5     //Ajout temporaire, le,temps de basculer sur le MAX30001
 
 
 // Accelerometer : vu
