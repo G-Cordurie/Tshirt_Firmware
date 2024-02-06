@@ -1,7 +1,7 @@
 #ifndef Euro_Body_H
 #define Euro_Body_H
 
-#define HW_REV_STR "0102"
+//#define HW_REV_STR "0102"
 
 // LED : vu
 #define LED0 26U
@@ -52,7 +52,7 @@
 #define SDO_FLASH 27U
 #define WP_FLASH 255U // TODO: to delete
 
-#endif // CMIZ0101_H
+#endif // Euro_Body_H
 
 
 

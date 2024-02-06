@@ -55,23 +55,29 @@ static volatile battery_chrg_state_t m_next_state             = CHRG_IDLE_STATE;
 
 static inline void tsCtrl_pin_highZ(void)
 {
+    /*
     nrf_gpio_cfg_input(SCL_SPARE, NRF_GPIO_PIN_NOPULL);
     nrf_gpio_input_disconnect(SCL_SPARE);
     // INFO("[BATTERY_CHRGR] > tsCtrl_pin_highZ");
+    */
 }
 
 static inline void tsCtrl_pin_set(void)
 {
+    /*
     nrf_gpio_pin_set(SCL_SPARE);
     nrf_gpio_cfg_output(SCL_SPARE);
     // INFO("[BATTERY_CHRGR] > tsCtrl_pin_set");
+    */
 }
 
 static inline void tsCtrl_pin_clear(void)
 {
+    /*
     nrf_gpio_pin_clear(SCL_SPARE);
     nrf_gpio_cfg_output(SCL_SPARE);
     // INFO("[BATTERY_CHRGR] > tsCtrl_pin_clear");
+    */
 }
 
 static void chrgr_delay_tmr_handler(void *p_context)

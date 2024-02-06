@@ -29,6 +29,7 @@ void dac_init(void)
  */
 void dac_disconnect(void)
 {
+/*
     uint8_t cmd[2];
 
     cmd[0] = STIM[0] & 0x00ff;
@@ -46,4 +47,5 @@ void dac_disconnect(void)
         }
     }
     CRITICAL_REGION_EXIT();
+*/
 }

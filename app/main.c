@@ -174,11 +174,13 @@ int main(void)
 
     app_modules_init();
 
+/*
     if (battery_safe_boot_check() != NRF_SUCCESS)
     {
         system_shutdown(false);
         sleep_mode_enter();
     }
+*/
 
 #if APP_MODULE_ENABLED(BLE_SEC)
     (void)advertising_start(false);

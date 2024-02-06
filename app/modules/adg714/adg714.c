@@ -15,6 +15,7 @@ static volatile uint8_t m_adg714_spi_initialized;
 
 void adg714_init(void)
 {
+    /*
     nrf_gpio_pin_set(NSYNC_UC);
     nrf_gpio_cfg_output(NSYNC_UC);
 
@@ -23,6 +24,7 @@ void adg714_init(void)
 
     nrf_gpio_pin_clear(DOUT_UC);
     nrf_gpio_cfg_output(DOUT_UC);
+    */
 }
 
 /*--------------------------------------------------------------------------*/
@@ -30,10 +32,12 @@ void adg714_init(void)
 
 void adg714_spi_init(void)
 {
-    nrf_drv_spi_config_t spi_config = NRF_DRV_SPI_DEFAULT_CONFIG;
+    
+    //nrf_drv_spi_config_t spi_config = NRF_DRV_SPI_DEFAULT_CONFIG;
 
     if (!m_adg714_spi_initialized)
     {
+        /*
         nrf_gpio_pin_set(NSYNC_UC);
         nrf_gpio_cfg_output(NSYNC_UC);
 
@@ -49,8 +53,9 @@ void adg714_spi_init(void)
 
         ret_code_t err_code = spim0_init(&spi_config, adg714_spi_uninit);
         APP_ERROR_CHECK(err_code);
-
+        */
         m_adg714_spi_initialized = 1;
+        
     }
 }
 
@@ -61,8 +66,10 @@ void adg714_spi_uninit(void)
 {
     if (m_adg714_spi_initialized)
     {
+        /*
         nrf_gpio_pin_set(NSYNC_UC);
         spim0_uninit();
+        */
         m_adg714_spi_initialized = false;
     }
 }
@@ -72,6 +79,7 @@ void adg714_spi_uninit(void)
 
 void adg714_spi_write(uint8_t const *data, uint8_t len)
 {
+    /*
     if (!m_adg714_spi_initialized)
     {
         adg714_spi_init();
@@ -88,6 +96,7 @@ void adg714_spi_write(uint8_t const *data, uint8_t len)
     nrf_gpio_pin_set(NSYNC_UC);
 
     APP_ERROR_CHECK(err_code);
+    */
 }
 
 /*--------------------------------------------------------------------------*/

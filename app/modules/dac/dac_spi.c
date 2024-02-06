@@ -20,6 +20,7 @@ void dac_spi_init(void)
 {
     if (!m_dac_spi_initialized)
     {
+        /*
         nrf_drv_spi_config_t const config = {
             .sck_pin      = CK_DAK,
             .mosi_pin     = SDIN_DAC,
@@ -30,10 +31,13 @@ void dac_spi_init(void)
             .frequency    = NRF_DRV_SPI_FREQ_4M,
             .mode         = NRF_DRV_SPI_MODE_1,
             .bit_order    = NRF_DRV_SPI_BIT_ORDER_MSB_FIRST,
+        
         };
+        
 
         ret_code_t err_code = nrf_drv_spi_init(&m_spi_master, &config, NULL, NULL);
         APP_ERROR_CHECK(err_code);
+        */
 
         m_dac_spi_initialized = true;
         return;

@@ -59,17 +59,26 @@ void imp_ch_switch_on(imp_ch_id_t chId)
     adg714_spi_write(&chIdTochCmdTable[chId], ADG714_CMD_LEN);
 }
 
+/*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
+
 void imp_ch_switch_off(void)
 {
     uint8_t switch_off_cmd[ADG714_CMD_LEN] = {SWITCH_OFF_CMD};
     adg714_spi_write((uint8_t *)&switch_off_cmd, ADG714_CMD_LEN);
 }
 
+/*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
+
 void imp_meas_enable(void)
 {
-    nrf_gpio_cfg_output(SELECT);
-    nrf_gpio_pin_clear(SELECT);
+//    nrf_gpio_cfg_output(SELECT);
+//    nrf_gpio_pin_clear(SELECT);
 }
+
+/*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 
 void imp_meas_init(void)
 {

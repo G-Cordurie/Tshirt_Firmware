@@ -11,8 +11,10 @@ static volatile ecg_gain_t m_ecg_gain = ecg_gain_0;
 
 static inline void ecg_switch_enable(void)
 {
+    /*
     nrf_gpio_cfg_output(SELECT);
     nrf_gpio_pin_set(SELECT);
+    */
 }
 
 /*--------------------------------------------------------------------------*/
@@ -21,6 +23,7 @@ static inline void ecg_switch_enable(void)
 
 static void ecg_hw_filter_init(void)
 {
+/*
 #if HW_TYPE == HW_TYPE_0706
     nrf_gpio_cfg_output(GAIN);
 
@@ -36,6 +39,7 @@ static void ecg_hw_filter_init(void)
     ecg_switch_enable();
 
 #endif
+*/
 }
 
 /*--------------------------------------------------------------------------*/

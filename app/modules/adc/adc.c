@@ -106,6 +106,7 @@ static void adc_battery_channels_init(void)
 
 static void adc_imp_channels_init(void)
 {
+    /*
     ret_code_t err_code;
 
     nrf_saadc_channel_config_t imp_channel_cfg = NRF_DRV_SAADC_DEFAULT_CHANNEL_CONFIG_SE(MES_ZTH);
@@ -115,6 +116,7 @@ static void adc_imp_channels_init(void)
     imp_channel_cfg.burst                      = NRF_SAADC_BURST_DISABLED;
     err_code                                   = nrf_drv_saadc_channel_init(SAADC_CH_5, &imp_channel_cfg);
     APP_ERROR_CHECK(err_code);
+    */
 }
 
 static void adc_temp_channels_init(void)

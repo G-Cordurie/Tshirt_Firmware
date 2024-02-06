@@ -17,5 +17,5 @@ set NRF_TOOLS=C:/Program Files/Nordic Semiconductor/nrf-command-line-tools/bin
 rem Activate this line to set the 'Debug' build config
 rem set DEBUG=1
 
-"%LOCALAPPDATA%/Programs/Microsoft VS Code/Code.exe" ws.code-workspace
+rem "%LOCALAPPDATA%/Programs/Microsoft VS Code/Code.exe" ws.code-workspace
 
