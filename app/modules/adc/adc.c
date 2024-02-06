@@ -91,6 +91,9 @@ static void adc_medic_channels_init(void)
     APP_ERROR_CHECK(err_code);
 }
 
+/*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
+
 static void adc_battery_channels_init(void)
 {
     ret_code_t err_code;
@@ -172,6 +175,9 @@ void adc_uninit(void)
 }
 
 static void saadc_tmr_handler(nrf_timer_event_t event_type, void *p_context) {}
+
+/*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 
 static void adc_sampling_evt_init(const saadc_tmr_cfg_t *const saadc_tmr_cfg)
 {

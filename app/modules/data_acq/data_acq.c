@@ -60,6 +60,9 @@ static data_acq_state_t idle_state_hanlder(void)
     return IDLE_STATE;
 }
 
+/*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
+
 static data_acq_state_t medic_meas_state_hanlder(void)
 {
 #if 0    
@@ -84,6 +87,7 @@ static data_acq_state_t medic_meas_state_hanlder(void)
 
     return MEDIC_MEAS_STATE;
 }
+
 
 static data_acq_state_t imp_meas_state_hanlder(void)
 {
