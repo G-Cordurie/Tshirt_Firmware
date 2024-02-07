@@ -58,8 +58,8 @@ static inline void tsCtrl_pin_highZ(void)
     /*
     nrf_gpio_cfg_input(SCL_SPARE, NRF_GPIO_PIN_NOPULL);
     nrf_gpio_input_disconnect(SCL_SPARE);
-    // INFO("[BATTERY_CHRGR] > tsCtrl_pin_highZ");
     */
+    // INFO("[BATTERY_CHRGR] > tsCtrl_pin_highZ");
 }
 
 static inline void tsCtrl_pin_set(void)
@@ -67,8 +67,8 @@ static inline void tsCtrl_pin_set(void)
     /*
     nrf_gpio_pin_set(SCL_SPARE);
     nrf_gpio_cfg_output(SCL_SPARE);
-    // INFO("[BATTERY_CHRGR] > tsCtrl_pin_set");
     */
+    //INFO("[BATTERY_CHRGR] > tsCtrl_pin_set");
 }
 
 static inline void tsCtrl_pin_clear(void)
@@ -76,8 +76,8 @@ static inline void tsCtrl_pin_clear(void)
     /*
     nrf_gpio_pin_clear(SCL_SPARE);
     nrf_gpio_cfg_output(SCL_SPARE);
-    // INFO("[BATTERY_CHRGR] > tsCtrl_pin_clear");
     */
+    //INFO("[BATTERY_CHRGR] > tsCtrl_pin_clear");
 }
 
 static void chrgr_delay_tmr_handler(void *p_context)
@@ -379,6 +379,9 @@ static battery_chrg_state_t chrg_complete_state_hanlder(void)
 }
 #endif
 
+/*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
+
 void battery_chrgr_enable(void)
 {
 #if (HW_TYPE == HW_TYPE_0706)
@@ -386,15 +389,31 @@ void battery_chrgr_enable(void)
 #endif
 }
 
+/*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
+
 chrgr_state_t battery_chrgr_state_get(void)
 {
     return m_chrgr_state;
 }
 
+/*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
+
 bool battery_is_charging(void)
 {
-    return m_next_state != CHRG_IDLE_STATE;
+#if (HW_TYPE == HW_TYPE_0706)
+    if(m_next_state == CHRG_IDLE_STATE) return 0; else return 1;
+    /*
+    m_next_state != CHRG_IDLE_STATE;
+    return  m_next_state;
+    */
+#endif
+    return 1;
 }
+
+/*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 
 void battery_chrgr_init(void)
 {

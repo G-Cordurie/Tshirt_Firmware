@@ -3,6 +3,7 @@
     "C_Cpp.dimInactiveRegions": false,
     "cmake.configureOnOpen": false,
     "files.associations": {
-        "nrf_drv_gpiote.h": "c"
+        "nrf_drv_gpiote.h": "c",
+        "nrf_gpio.h": "c"
     }
 }

@@ -6,6 +6,10 @@
 // LED : vu
 #define LED0 26U
 
+//Polarisation des mesure respi et temp
+#define Pol_P    18
+#define Pol_N    21
+
 // Battery : vu
 #define VBAT NRF_SAADC_INPUT_AIN6
 #define NCHG 16     //29U : signal routé sur 29, redirigé temporairement sur 16 qui est libre sur le composant

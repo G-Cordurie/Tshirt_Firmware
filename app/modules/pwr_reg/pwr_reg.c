@@ -39,6 +39,12 @@ void pwr_ldo_reg_enable(void)
 
         nrf_gpio_pin_set(CMDE_OFF);         //Tshirt : nrf_gpio_pin_clear(CMDE_OFF);
 
+        nrf_gpio_pin_clear(Pol_N);         
+        nrf_gpio_cfg_output(Pol_N);
+
+        nrf_gpio_pin_set(Pol_P);         
+        nrf_gpio_cfg_output(Pol_P);
+
         reg_enabled = true;
     }
 }
@@ -51,6 +57,13 @@ void pwr_ldo_reg_disable(void)
     nrf_gpio_pin_clear(CMDE_OFF);         //Pour hard tshirt : nrf_gpio_pin_set(CMDE_OFF);
     nrf_gpio_cfg_output(CMDE_OFF);
     nrf_delay_ms(REG_STARTUP_TIME_MS);
+
+    nrf_gpio_pin_clear(Pol_N);         
+    nrf_gpio_cfg_output(Pol_N);
+
+    nrf_gpio_pin_clear(Pol_P);         
+    nrf_gpio_cfg_output(Pol_P);
+
     reg_enabled = false;
 }
 

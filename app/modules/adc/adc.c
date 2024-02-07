@@ -51,7 +51,7 @@ static void adc_medic_channels_init(void)
     APP_ERROR_CHECK(err_code);
 
     nrf_saadc_channel_config_t breath0_channel_cfg = NRF_DRV_SAADC_DEFAULT_CHANNEL_CONFIG_SE(RESPI_UC_0);
-    breath0_channel_cfg.gain                       = NRF_SAADC_GAIN1_2;
+    breath0_channel_cfg.gain                       = NRF_SAADC_GAIN1_4;
     breath0_channel_cfg.reference                  = NRF_SAADC_REFERENCE_INTERNAL;
     breath0_channel_cfg.acq_time                   = NRF_SAADC_ACQTIME_40US;
     breath0_channel_cfg.burst                      = NRF_SAADC_BURST_ENABLED;
@@ -59,7 +59,7 @@ static void adc_medic_channels_init(void)
     APP_ERROR_CHECK(err_code);
 
     nrf_saadc_channel_config_t breath1_channel_cfg = NRF_DRV_SAADC_DEFAULT_CHANNEL_CONFIG_SE(RESPI_UC_1);
-    breath1_channel_cfg.gain                       = NRF_SAADC_GAIN1_2;
+    breath1_channel_cfg.gain                       = NRF_SAADC_GAIN1_4;
     breath1_channel_cfg.reference                  = NRF_SAADC_REFERENCE_INTERNAL;
     breath1_channel_cfg.acq_time                   = NRF_SAADC_ACQTIME_40US;
     breath1_channel_cfg.burst                      = NRF_SAADC_BURST_ENABLED;
