@@ -28,6 +28,7 @@
 #include "nrf_stack_info.h"
 
 #include "acc.h"
+#include "adc_cb.h"
 #include "adg714.h"
 #include "app_ble_gap.h"
 #include "app_ble_mngr.h"
@@ -101,6 +102,7 @@ static inline void bsp_init(void)
 {
     led0_init();
     ecg_init();
+    Init_Buf_sin();
     pwr_ldo_reg_disable();
     //battery_switch_enable();
     //battery_chrgr_init();

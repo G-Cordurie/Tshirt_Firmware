@@ -23,7 +23,25 @@
 
 #include "arm_math.h"
 
+volatile static uint16_t Buf_sin[200];
+
+
 /*--------------------------------------------------------------------------*/
+/*                  Tableau de test pour transmission                       */
+/*--------------------------------------------------------------------------*/
+
+void Init_Buf_sin(void)
+{
+    uint8_t i;
+
+    for(i=0;i<200;i++)
+    {
+        Buf_sin[i] = 2048 + 100*sin(6.28*i/200);
+    }
+}
+
+/*--------------------------------------------------------------------------*/
+/*      Exécuté toutes les 20 ms, soit 4 échantillons ECG                   */
 /*--------------------------------------------------------------------------*/
 
 static void saadc_medic_callback(nrf_drv_saadc_evt_t const *p_event)
@@ -32,8 +50,17 @@ static void saadc_medic_callback(nrf_drv_saadc_evt_t const *p_event)
     volatile static nrf_saadc_value_t ecg_samples_buffer[ECG_SAMPLES_BUFFER_LEN] = {0};
     volatile static uint8_t           ecg_samples_cntr                           = 0;
 
+    static uint8_t Cnt_buf = 0;         //Ajout GC
+
     adc_channel_buf_cpy((nrf_saadc_value_t *const)&ecg_samples_buffer[ecg_samples_cntr], p_event->data.done.p_buffer,
                         SAADC_MEDIC_CH_SAMPLES, SAADC_CH_0, SAADC_MEDIC_CH_NBR);
+    
+    for(uint8_t i = 0;i<4;i++)       //Ajout GC
+    {
+        ecg_samples_buffer[ecg_samples_cntr+i] = Buf_sin[Cnt_buf++];
+        if(Cnt_buf == 200) Cnt_buf = 0;
+    }
+    
     ecg_samples_cntr += SAADC_MEDIC_CH_SAMPLES;
 
     if (ecg_samples_cntr >= ECG_SAMPLES_CNT)
