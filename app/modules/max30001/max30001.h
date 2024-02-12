@@ -1,7 +1,7 @@
 #ifndef MAX30001_H
 # define MAX30001_H
 
-#include "evt_ctx.h"
+//#include "evt_ctx.h"
 #include "max30001_spi.h"
 #include "nrf_drv_gpiote.h"
 

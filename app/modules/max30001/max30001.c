@@ -1,4 +1,7 @@
+#include "ble_diagw.h"
+#include "data_session.h"
 #include "max30001.h"
+#include "storage.h"
 
 #include "arm_math.h"
 #include "ecg.h"
@@ -85,8 +88,8 @@ static int max30001_int_handler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t 
 
         max30001_reg_read(ECG_FIFO_BURST, ecg_data, sizeof (ecg_data));
 
-        memcpy(ecg, &ecg_index, sizeof(ecg_index));
-        for (uint8_t i = 1, k = sizeof(ecg_index); i < size_ecg; i = i + 6)
+        //memcpy(ecg, &ecg_index, sizeof(ecg_index));
+        for (uint8_t i = 1, k = TIMESTAMP_LEN; i < size_ecg; i = i + 6)
         {
             // Check if it is valid ECG data
             ptag = (ecg_data[i + 2] & 0x07) + (ecg_data[i + 5] & 0x07);
@@ -112,8 +115,15 @@ static int max30001_int_handler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t 
                 INFO ("Error on FIFO ECG (p:%X, e:%x)\n", ptag, etag);
             }
         }
-        RING_STORE(ECG_TYPE, ecg);
-        ecg_index++;
+
+        uint64_t timestamp = data_session_sample_timestamp_get(ecg_idx_type);
+        memcpy(ecg, (uint8_t *)&timestamp, sizeof(timestamp));
+        ring_store(ECG_TYPE, ecg, sizeof(ecg));
+
+        nrf_gpio_pin_toggle(LED0);
+        
+        //RING_STORE(ECG_TYPE, ecg);
+        //ecg_index++;
     }
 
     // No Bioz in Europrotect
@@ -154,6 +164,7 @@ static int max30001_int_handler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t 
     //    imp_index++;
     //}
 
+/*      Partie envoi du rtor desactivee pour le moment
     if (status [2] & 0x04) // Status INT for R-to-R
     {
        #define SIZE_AVG 10
@@ -193,6 +204,7 @@ static int max30001_int_handler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t 
         }
         rtor_index++;
     }
+    */
     return 0;
 }
 
@@ -281,8 +293,9 @@ void max30001_meas_init(void)
 
     max30001_reg_write(MNGR_INT,    0x4B0004);      //10 valeurs dans la fifo -> IT
 
-    max30001_reg_write(EN_INT,      0x880403);
-    max30001_reg_write(EN_INT2,     0x000303);
+    //max30001_reg_write(EN_INT,      0x880403);      //Int fifo en, Bioz en, RRint en 
+    max30001_reg_write(EN_INT,      0x800003);      //Int fifo 
+    max30001_reg_write(EN_INT2,     0x000303);      //Sample synchro
     max30001_reg_write(SYNCH,       0x000000);
     allow_interrupts = true;
 }

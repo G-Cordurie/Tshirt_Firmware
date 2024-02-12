@@ -36,8 +36,8 @@ void medic_meas_start(void)
     //dac_disconnect();
     //imp_ch_switch_off();
     acc_spi_init();
-    max_30001_spi_init();       //?
-    max_30001_meas_init();       //?
+    max30001_spi_init();       //?
+    max30001_meas_init();       //?
     adc_medic_meas_init();
 }
 

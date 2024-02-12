@@ -4,6 +4,8 @@
     "cmake.configureOnOpen": false,
     "files.associations": {
         "nrf_drv_gpiote.h": "c",
-        "nrf_gpio.h": "c"
+        "nrf_gpio.h": "c",
+        "acc.h": "c",
+        "max30001.h": "c"
     }
 }

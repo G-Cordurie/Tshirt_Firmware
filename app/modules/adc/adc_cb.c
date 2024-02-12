@@ -46,6 +46,7 @@ void Init_Buf_sin(void)
 
 static void saadc_medic_callback(nrf_drv_saadc_evt_t const *p_event)
 {
+/*  Le MAX30001 effectue maintenant la mesure de l'ECG
     // ECG
     volatile static nrf_saadc_value_t ecg_samples_buffer[ECG_SAMPLES_BUFFER_LEN] = {0};
     volatile static uint8_t           ecg_samples_cntr                           = 0;
@@ -88,7 +89,7 @@ static void saadc_medic_callback(nrf_drv_saadc_evt_t const *p_event)
         ecg_samples_cntr -= ECG_SAMPLES_CNT;
         nrf_gpio_pin_toggle(LED0);
     }
-
+*/
     // Breath
     volatile static uint8_t           breath_ble_buffer[BLE_DIAGW_MAX_BREATH_CHAR_LEN]  = {0};
     volatile static uint8_t           breath_ble_buf_idx                                = TIMESTAMP_LEN;
@@ -98,9 +99,9 @@ static void saadc_medic_callback(nrf_drv_saadc_evt_t const *p_event)
 
     // BREATH 0 + 1 : 1/10 rate ecg put five in a row
     adc_channel_buf_cpy((nrf_saadc_value_t *const)&breath0_samples_buffer[breath_samples_cntr], p_event->data.done.p_buffer,
-                        SAADC_MEDIC_CH_SAMPLES, SAADC_CH_1, SAADC_MEDIC_CH_NBR);
+                        SAADC_MEDIC_CH_SAMPLES, SAADC_CH_0, SAADC_MEDIC_CH_NBR);
     adc_channel_buf_cpy((nrf_saadc_value_t *const)&breath1_samples_buffer[breath_samples_cntr], p_event->data.done.p_buffer,
-                        SAADC_MEDIC_CH_SAMPLES, SAADC_CH_2, SAADC_MEDIC_CH_NBR);
+                        SAADC_MEDIC_CH_SAMPLES, SAADC_CH_1, SAADC_MEDIC_CH_NBR);
     breath_samples_cntr += SAADC_MEDIC_CH_SAMPLES;
 
     if (breath_samples_cntr >= BREATH_SAMPLES_CNT)
@@ -143,11 +144,11 @@ static void saadc_medic_callback(nrf_drv_saadc_evt_t const *p_event)
         temp_sampling_cntr = 0;
         nrf_saadc_value_t temp_samples_buffer[SAADC_MEDIC_CH_SAMPLES];
 
-        adc_channel_buf_cpy(temp_samples_buffer, p_event->data.done.p_buffer, SAADC_MEDIC_CH_SAMPLES, SAADC_CH_3, SAADC_MEDIC_CH_NBR);
+        adc_channel_buf_cpy(temp_samples_buffer, p_event->data.done.p_buffer, SAADC_MEDIC_CH_SAMPLES, SAADC_CH_2, SAADC_MEDIC_CH_NBR);
         int16_t temp0 = temp_convert_ntc_to_temp(
             temp_convert_adc_to_ntc(adc_buffer_avg((nrf_saadc_value_t const *const)temp_samples_buffer, SAADC_MEDIC_CH_SAMPLES)));
 
-        adc_channel_buf_cpy(temp_samples_buffer, p_event->data.done.p_buffer, SAADC_MEDIC_CH_SAMPLES, SAADC_CH_4, SAADC_MEDIC_CH_NBR);
+        adc_channel_buf_cpy(temp_samples_buffer, p_event->data.done.p_buffer, SAADC_MEDIC_CH_SAMPLES, SAADC_CH_3, SAADC_MEDIC_CH_NBR);
         int16_t temp1 = temp_convert_ntc_to_temp(
             temp_convert_adc_to_ntc(adc_buffer_avg((nrf_saadc_value_t const *const)temp_samples_buffer, SAADC_MEDIC_CH_SAMPLES)));
 
@@ -166,7 +167,7 @@ static void saadc_medic_callback(nrf_drv_saadc_evt_t const *p_event)
     // Battery
     {
         nrf_saadc_value_t battery_samples_buffer[SAADC_MEDIC_CH_SAMPLES];
-        adc_channel_buf_cpy(battery_samples_buffer, p_event->data.done.p_buffer, SAADC_MEDIC_CH_SAMPLES, SAADC_CH_5, SAADC_MEDIC_CH_NBR);
+        adc_channel_buf_cpy(battery_samples_buffer, p_event->data.done.p_buffer, SAADC_MEDIC_CH_SAMPLES, SAADC_CH_4, SAADC_MEDIC_CH_NBR);
         battery_voltage_update(adc_buffer_avg((nrf_saadc_value_t const *const)battery_samples_buffer, SAADC_MEDIC_CH_SAMPLES));
     }
 

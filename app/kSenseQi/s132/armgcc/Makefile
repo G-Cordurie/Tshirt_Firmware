@@ -108,6 +108,8 @@ SRC_FILES += \
   $(PROJ_DIR)/modules/dac/dac.c \
   $(PROJ_DIR)/modules/dac/dac_spi.c \
   $(PROJ_DIR)/modules/adg714/adg714.c \
+  $(PROJ_DIR)/modules/max30001/max30001.c \
+  $(PROJ_DIR)/modules/max30001/max30001_spi.c \
   $(PROJ_DIR)/modules/acc/acc.c \
   $(PROJ_DIR)/modules/spi_mngr/spim0_mngr.c \
   $(PROJ_DIR)/modules/temp/temp.c \
@@ -250,6 +252,7 @@ INC_FOLDERS += \
   $(PROJ_DIR)/modules/breath \
   $(PROJ_DIR)/modules/dac \
   $(PROJ_DIR)/modules/data_acq \
+  $(PROJ_DIR)/modules/max30001 \
   $(PROJ_DIR)/modules/pwr_reg \
   $(PROJ_DIR)/modules/spi_mngr \
   $(PROJ_DIR)/modules/temp \
