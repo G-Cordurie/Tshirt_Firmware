@@ -9,6 +9,8 @@
 #include "debug.h"
 #include "ecg.h"
 #include "imp.h"
+#include "max30001_spi.h"
+#include "max30001.h"
 #include "pwr_reg.h"
 #include "storage.h"
 
@@ -34,6 +36,8 @@ void medic_meas_start(void)
     //dac_disconnect();
     //imp_ch_switch_off();
     acc_spi_init();
+    max_30001_spi_init();       //?
+    max_30001_meas_init();       //?
     adc_medic_meas_init();
 }
 

@@ -41,7 +41,7 @@ static void pan_212_workaround(uint32_t flag)
 static void adc_medic_channels_init(void)
 {
     ret_code_t err_code;
-
+/*
     nrf_saadc_channel_config_t ecg_channel_cfg = NRF_DRV_SAADC_DEFAULT_CHANNEL_CONFIG_SE(ECG_IN);
     ecg_channel_cfg.gain                       = NRF_SAADC_GAIN1_4;
     ecg_channel_cfg.reference                  = NRF_SAADC_REFERENCE_INTERNAL;
@@ -49,13 +49,13 @@ static void adc_medic_channels_init(void)
     ecg_channel_cfg.burst                      = NRF_SAADC_BURST_ENABLED;
     err_code                                   = nrf_drv_saadc_channel_init(SAADC_CH_0, &ecg_channel_cfg);
     APP_ERROR_CHECK(err_code);
-
+*/
     nrf_saadc_channel_config_t breath0_channel_cfg = NRF_DRV_SAADC_DEFAULT_CHANNEL_CONFIG_SE(RESPI_UC_0);
     breath0_channel_cfg.gain                       = NRF_SAADC_GAIN1_4;
     breath0_channel_cfg.reference                  = NRF_SAADC_REFERENCE_INTERNAL;
     breath0_channel_cfg.acq_time                   = NRF_SAADC_ACQTIME_40US;
     breath0_channel_cfg.burst                      = NRF_SAADC_BURST_ENABLED;
-    err_code                                       = nrf_drv_saadc_channel_init(SAADC_CH_1, &breath0_channel_cfg);
+    err_code                                       = nrf_drv_saadc_channel_init(SAADC_CH_0, &breath0_channel_cfg);
     APP_ERROR_CHECK(err_code);
 
     nrf_saadc_channel_config_t breath1_channel_cfg = NRF_DRV_SAADC_DEFAULT_CHANNEL_CONFIG_SE(RESPI_UC_1);
@@ -63,7 +63,7 @@ static void adc_medic_channels_init(void)
     breath1_channel_cfg.reference                  = NRF_SAADC_REFERENCE_INTERNAL;
     breath1_channel_cfg.acq_time                   = NRF_SAADC_ACQTIME_40US;
     breath1_channel_cfg.burst                      = NRF_SAADC_BURST_ENABLED;
-    err_code                                       = nrf_drv_saadc_channel_init(SAADC_CH_2, &breath1_channel_cfg);
+    err_code                                       = nrf_drv_saadc_channel_init(SAADC_CH_1, &breath1_channel_cfg);
     APP_ERROR_CHECK(err_code);
 
     nrf_saadc_channel_config_t temp0_channel_cfg = NRF_DRV_SAADC_DEFAULT_CHANNEL_CONFIG_SE(TEMP0);
@@ -71,7 +71,7 @@ static void adc_medic_channels_init(void)
     temp0_channel_cfg.reference                  = NRF_SAADC_REFERENCE_VDD4;
     temp0_channel_cfg.acq_time                   = NRF_SAADC_ACQTIME_40US;
     temp0_channel_cfg.burst                      = NRF_SAADC_BURST_ENABLED;
-    err_code                                     = nrf_drv_saadc_channel_init(SAADC_CH_3, &temp0_channel_cfg);
+    err_code                                     = nrf_drv_saadc_channel_init(SAADC_CH_2, &temp0_channel_cfg);
     APP_ERROR_CHECK(err_code);
 
     nrf_saadc_channel_config_t temp1_channel_cfg = NRF_DRV_SAADC_DEFAULT_CHANNEL_CONFIG_SE(TEMP1);
@@ -79,7 +79,7 @@ static void adc_medic_channels_init(void)
     temp1_channel_cfg.reference                  = NRF_SAADC_REFERENCE_VDD4;
     temp1_channel_cfg.acq_time                   = NRF_SAADC_ACQTIME_40US;
     temp1_channel_cfg.burst                      = NRF_SAADC_BURST_ENABLED;
-    err_code                                     = nrf_drv_saadc_channel_init(SAADC_CH_4, &temp1_channel_cfg);
+    err_code                                     = nrf_drv_saadc_channel_init(SAADC_CH_3, &temp1_channel_cfg);
     APP_ERROR_CHECK(err_code);
 
     nrf_saadc_channel_config_t battery_channel_cfg = NRF_DRV_SAADC_DEFAULT_CHANNEL_CONFIG_SE(VBAT);
@@ -87,7 +87,7 @@ static void adc_medic_channels_init(void)
     battery_channel_cfg.reference                  = NRF_SAADC_REFERENCE_VDD4;
     battery_channel_cfg.acq_time                   = NRF_SAADC_ACQTIME_40US;
     battery_channel_cfg.burst                      = NRF_SAADC_BURST_ENABLED;
-    err_code                                       = nrf_drv_saadc_channel_init(SAADC_CH_5, &battery_channel_cfg);
+    err_code                                       = nrf_drv_saadc_channel_init(SAADC_CH_4, &battery_channel_cfg);
     APP_ERROR_CHECK(err_code);
 }
 
@@ -173,6 +173,9 @@ void adc_uninit(void)
         m_adc_initialized = 0;
     }
 }
+
+/*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 
 static void saadc_tmr_handler(nrf_timer_event_t event_type, void *p_context) {}
 

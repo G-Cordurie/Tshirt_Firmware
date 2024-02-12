@@ -11,7 +11,7 @@
 #define SAADC_CH_4                4U
 #define SAADC_CH_5                5U
 
-#define SAADC_MEDIC_CH_NBR        6U
+#define SAADC_MEDIC_CH_NBR        5U
 #define SAADC_MEDIC_CH_SAMPLES    4U
 #define SAADC_MEDIC_BUF_LEN       (SAADC_MEDIC_CH_NBR * SAADC_MEDIC_CH_SAMPLES)
 

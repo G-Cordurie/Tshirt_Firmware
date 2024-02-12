@@ -46,6 +46,8 @@
 #include "debug.h"
 #include "ecg.h"
 #include "imp.h"
+#include "max30001.h"
+#include "max30001_spi.h"
 #include "pwr_mngr.h"
 #include "pwr_reg.h"
 #include "rtc.h"
@@ -110,6 +112,7 @@ static inline void bsp_init(void)
     //adg714_init();
     acc_spi_init();
     flash_spi_init();
+    max30001_spi_init();
 }
 
 /*--------------------------------------------------------------------------*/
