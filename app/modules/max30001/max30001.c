@@ -10,6 +10,8 @@ uint32_t rtor_index = 0;
 
 static volatile uint8_t allow_interrupts;
 
+volatile uint8_t Max_ECG[6];
+
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/
 
@@ -82,14 +84,15 @@ static int max30001_int_handler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t 
 
     if (status[1] & 0x80) // Status INT for ECG
     {
-        uint16_t size_ecg = (10 * 3) + 1; // From EFIT in MNGR_INT
+        uint16_t size_ecg = (4 * 3) + 1; // From EFIT in MNGR_INT
         uint8_t ecg_data[size_ecg];
-        uint8_t ecg[BLE_DIAGW_MAX_ECG_CHAR_LEN];
+        //uint8_t ecg[BLE_DIAGW_MAX_ECG_CHAR_LEN];
 
         max30001_reg_read(ECG_FIFO_BURST, ecg_data, sizeof (ecg_data));
 
         //memcpy(ecg, &ecg_index, sizeof(ecg_index));
-        for (uint8_t i = 1, k = TIMESTAMP_LEN; i < size_ecg; i = i + 6)
+        //for (uint8_t i = 1, k = TIMESTAMP_LEN; i < size_ecg; i = i + 6)
+        for (uint8_t i = 1, k = 0; i < size_ecg; i = i + 6)
         {
             // Check if it is valid ECG data
             ptag = (ecg_data[i + 2] & 0x07) + (ecg_data[i + 5] & 0x07);
@@ -104,11 +107,11 @@ static int max30001_int_handler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t 
                 data2 = center_ecg_data((data2 & 0xFFFFFFC0) >> 6, DIAG_ECG_RESO);
 
                 //TODO Full resolution (only 12bits out of 18bits are used here)
-                ecg[k++] =  (data1 & 0x0FF0) >> 4;
-                ecg[k] =    (data1 & 0x000F) << 4;
+                Max_ECG[k++] =  (data1 & 0x0FF0) >> 4;
+                Max_ECG[k] =    (data1 & 0x000F) << 4;
 
-                ecg[k++] += (data2 & 0x0F00) >> 8;
-                ecg[k++] =   data2 & 0x00FF;
+                Max_ECG[k++] += (data2 & 0x0F00) >> 8;
+                Max_ECG[k++] =   data2 & 0x00FF;
             }
             else
             {
@@ -116,10 +119,11 @@ static int max30001_int_handler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t 
             }
         }
 
+/*
         uint64_t timestamp = data_session_sample_timestamp_get(ecg_idx_type);
         memcpy(ecg, (uint8_t *)&timestamp, sizeof(timestamp));
         ring_store(ECG_TYPE, ecg, sizeof(ecg));
-
+*/
         nrf_gpio_pin_toggle(LED0);
         
         //RING_STORE(ECG_TYPE, ecg);
@@ -164,7 +168,7 @@ static int max30001_int_handler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t 
     //    imp_index++;
     //}
 
-/*      Partie envoi du rtor desactivee pour le moment
+/*      Partie envoi du rtor desactivee pour le moment (GC)
     if (status [2] & 0x04) // Status INT for R-to-R
     {
        #define SIZE_AVG 10
@@ -291,7 +295,7 @@ void max30001_meas_init(void)
 
     max30001_reg_write(CNFG_GEN,    0x280013);      //fMSTR = 32000Hz
 
-    max30001_reg_write(MNGR_INT,    0x4B0004);      //10 valeurs dans la fifo -> IT
+    max30001_reg_write(MNGR_INT,    0x1B0004);      //(1B -> 4 ou 4B -> 10) valeurs dans la fifo -> IT
 
     //max30001_reg_write(EN_INT,      0x880403);      //Int fifo en, Bioz en, RRint en 
     max30001_reg_write(EN_INT,      0x800003);      //Int fifo 

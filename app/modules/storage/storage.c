@@ -164,6 +164,10 @@ static void raw_data_store(uint8_t type, uint8_t *buff, uint16_t size)
     }
 }
 
+/*--------------------------------------------------------------------------*/
+/*                      A passer en inline ?                                */
+/*--------------------------------------------------------------------------*/
+
 void ring_store(notif_data_type_t type, uint8_t *data, uint8_t len)
 {
     if (len > 0 && len <= notif_max_len[type])
@@ -202,6 +206,8 @@ void ring_store(notif_data_type_t type, uint8_t *data, uint8_t len)
     }
 }
 
+/*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /**
  * @brief Read data stored in a ring buffer from the ADC callback and store it to flash memory or send it over BLE
  *

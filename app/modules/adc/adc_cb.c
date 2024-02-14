@@ -24,7 +24,7 @@
 #include "arm_math.h"
 
 volatile static uint16_t Buf_sin[200];
-
+extern volatile uint8_t Max_ECG[6];
 
 /*--------------------------------------------------------------------------*/
 /*                  Tableau de test pour transmission                       */
@@ -90,6 +90,40 @@ static void saadc_medic_callback(nrf_drv_saadc_evt_t const *p_event)
         nrf_gpio_pin_toggle(LED0);
     }
 */
+
+
+
+ // ECG
+    static uint8_t ecg_cntr = 8;
+    static uint8_t ecg_buf[26];
+    
+    for(int8_t i=0;i<6;i++)
+    {
+        ecg_buf[i+ecg_cntr+8] = Max_ECG[i];
+    }
+
+    ecg_cntr += 12;
+
+    if (ecg_cntr >= 23)
+    {
+        uint64_t timestamp  = data_session_sample_timestamp_get(ecg_idx_type);
+        memcpy((uint8_t *)&ecg_buf[0], (uint8_t *)&timestamp, sizeof(timestamp));
+
+        ring_store(ECG_TYPE, ecg_buf, 23);
+
+        if (ecg_cntr >= 23)
+        {
+            ecg_buf[8] = ecg_buf[23];
+            ecg_buf[9] = ecg_buf[24];
+            ecg_buf[10] = ecg_buf[25];
+        }
+
+        ecg_cntr -= 15;
+    }
+
+
+
+
     // Breath
     volatile static uint8_t           breath_ble_buffer[BLE_DIAGW_MAX_BREATH_CHAR_LEN]  = {0};
     volatile static uint8_t           breath_ble_buf_idx                                = TIMESTAMP_LEN;

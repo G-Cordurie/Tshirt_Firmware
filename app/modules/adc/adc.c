@@ -379,6 +379,9 @@ void adc_channel_buf_cpy(nrf_saadc_value_t *const dest, nrf_saadc_value_t const 
     }
 }
 
+/*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
+
 float64_t adc_buffer_avg(nrf_saadc_value_t const *const data, uint8_t len)
 {
     uint32_t sum = 0;
