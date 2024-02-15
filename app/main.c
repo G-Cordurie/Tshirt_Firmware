@@ -104,7 +104,7 @@ static inline void bsp_init(void)
 {
     led0_init();
     ecg_init();
-    Init_Buf_sin();
+    //Init_Buf_sin();
     pwr_ldo_reg_disable();
     //battery_switch_enable();
     //battery_chrgr_init();

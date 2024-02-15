@@ -23,7 +23,7 @@
 
 #include "arm_math.h"
 
-volatile static uint16_t Buf_sin[200];
+//volatile static uint16_t Buf_sin[200];
 extern volatile uint8_t Max_ECG[6];
 
 /*--------------------------------------------------------------------------*/
@@ -32,12 +32,14 @@ extern volatile uint8_t Max_ECG[6];
 
 void Init_Buf_sin(void)
 {
+    /*
     uint8_t i;
 
     for(i=0;i<200;i++)
     {
         Buf_sin[i] = 2048 + 100*sin(6.28*i/200);
     }
+    */
 }
 
 /*--------------------------------------------------------------------------*/
@@ -99,10 +101,10 @@ static void saadc_medic_callback(nrf_drv_saadc_evt_t const *p_event)
     
     for(int8_t i=0;i<6;i++)
     {
-        ecg_buf[i+ecg_cntr+8] = Max_ECG[i];
+        ecg_buf[i+ecg_cntr] = Max_ECG[i];
     }
 
-    ecg_cntr += 12;
+    ecg_cntr += 6;
 
     if (ecg_cntr >= 23)
     {
@@ -111,7 +113,7 @@ static void saadc_medic_callback(nrf_drv_saadc_evt_t const *p_event)
 
         ring_store(ECG_TYPE, ecg_buf, 23);
 
-        if (ecg_cntr >= 23)
+        if (ecg_cntr > 23)
         {
             ecg_buf[8] = ecg_buf[23];
             ecg_buf[9] = ecg_buf[24];
