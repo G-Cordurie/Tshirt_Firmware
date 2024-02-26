@@ -25,10 +25,16 @@ APP_TIMER_DEF(m_data_session_timeout_tmr_id);
 static volatile data_session_t m_data_session;
 static volatile bool           m_user_connected = false;
 
+/*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
+
 static const uint32_t m_data_sampling_period_ms[] = {
     [ecg_idx_type] = ECG_SAMPLING_PERIOD_MS,   [imp_idx_type] = IMP_SAMPLING_PERIOD_MS, [breath_idx_type] = BREATH_SAMPLING_PERIOD_MS,
     [temp_idx_type] = TEMP_SAMPLING_PERIOD_MS, [acc_idx_type] = ACC_SAMPLING_PERIOD_MS,
 };
+
+/*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 
 static void data_session_flash_load(data_session_t *const data_session)
 {
@@ -139,6 +145,9 @@ void data_session_user_disconnect(void)
     CRITICAL_REGION_EXIT();
 }
 
+/*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
+
 void data_session_update(uint64_t user_id, uint64_t timestamp)
 {
     if (timestamp && (timestamp > m_data_session.timestamp))
@@ -240,6 +249,9 @@ void data_session_sample_index_set(const data_idx_type_t type, const uint32_t id
     INFO("[%s] Invalid data type (%u) !", (uint32_t) __func__, type);
 }
 
+/*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
+
 uint64_t data_session_sample_timestamp_get(const data_idx_type_t type)
 {
     uint64_t timestamp = 0;
@@ -257,6 +269,9 @@ uint64_t data_session_sample_timestamp_get(const data_idx_type_t type)
 
     return timestamp;
 }
+
+/*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 
 static void data_session_timeout_tmr_handler(void *p_context)
 {
