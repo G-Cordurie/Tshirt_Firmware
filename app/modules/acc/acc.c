@@ -111,6 +111,32 @@ void acc_spi_transfer(uint8_t const *tx_data, uint8_t *rx_data, uint8_t len)
 
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/
+
+void acc_IT_off(void)
+{
+    uint8_t acc_cmd[ACC_CFG_CMD_LEN];
+
+    // INT1_CFG 0x30
+    acc_cmd[0] = 0x30;
+    acc_cmd[1] = 0x10; // 0x10  disable XLIE, YLIE and ZLIE interrupt generation,
+    acc_spi_write(&acc_cmd[0], ACC_CFG_CMD_LEN);
+}
+
+/*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
+
+void acc_IT_on(void)
+{
+    uint8_t acc_cmd[ACC_CFG_CMD_LEN];
+
+    // INT1_CFG 0x30
+    acc_cmd[0] = 0x30;
+    acc_cmd[1] = 0x95; // 0x95  Enable XLIE or YLIE or ZLIE interrupt generation,
+    acc_spi_write(&acc_cmd[0], ACC_CFG_CMD_LEN);
+}
+
+/*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 /**@brief Init the accelerometer with default value
  *
  */

@@ -12,5 +12,7 @@ void    acc_spi_uninit(void);
 void    acc_spi_write(uint8_t const *data, uint8_t len);
 void    acc_spi_transfer(uint8_t const *tx_data, uint8_t *rx_data, uint8_t len);
 uint8_t acc_spi_initialized(void);
+void acc_IT_off(void);
+void acc_IT_on(void);
 
 #endif // ACC_H

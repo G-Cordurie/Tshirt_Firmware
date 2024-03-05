@@ -18,7 +18,7 @@
 #define BLE_DEVICE_NAME      "DiagW-0000" // Name of device. Will be included in the advertising data
 #define MANUFACTURER_NAME    "ChronoLife" // Manufacturer. Will be passed to Device Information Service.
 #define COMPANY_IDENTIFIER   0x436CUL
-#define SW_REV_STR           "1.5.0-alpha.1-noSec-sp.15_b_gc0"
+#define SW_REV_STR           "1.5.0-alpha.1-noSec-sp.15_b_gc1"
 
 typedef struct
 {

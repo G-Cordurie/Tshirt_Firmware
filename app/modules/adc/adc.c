@@ -6,6 +6,7 @@
 #include "nrf_timer.h"
 #include "sdk_config.h"
 
+#include "acc.h"
 #include "adc.h"
 #include "adc_cb.h"
 #include "boards.h"
@@ -418,4 +419,5 @@ void adc_meas_stop(void)
     adc_uninit();
     NRF_SAADC->INTENCLR = (SAADC_INTENCLR_END_Clear << SAADC_INTENCLR_END_Pos);
     sd_nvic_ClearPendingIRQ(SAADC_IRQn);
+    acc_IT_on();
 }

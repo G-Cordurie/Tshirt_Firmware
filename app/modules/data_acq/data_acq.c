@@ -31,6 +31,7 @@ void medic_meas_start(void)
 {
     adc_meas_stop();
     pwr_ldo_reg_enable();
+    acc_IT_off();
     //battery_switch_enable();
     ecg_init();
     //dac_disconnect();

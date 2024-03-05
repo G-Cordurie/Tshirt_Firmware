@@ -123,9 +123,6 @@ static void saadc_medic_callback(nrf_drv_saadc_evt_t const *p_event)
         ecg_cntr -= 15;
     }
 
-
-
-
     // Breath
     volatile static uint8_t           breath_ble_buffer[BLE_DIAGW_MAX_BREATH_CHAR_LEN]  = {0};
     volatile static uint8_t           breath_ble_buf_idx                                = TIMESTAMP_LEN;
@@ -172,6 +169,31 @@ static void saadc_medic_callback(nrf_drv_saadc_evt_t const *p_event)
         }
     }
 
+    // Acc
+    
+    uint8_t res[7]     = {0};
+    uint8_t command[7] = {0xe8, 0xe9, 0xea, 0xeb, 0xec, 0xed, 0x00}; // Reading acc : X_L, X_H, Y_L, Y_H, Z_L, Z_H
+    {
+        acc_spi_transfer(&command[0], (uint8_t *)&res[0], 7);
+
+        uint16_t x = (((res[2] << 8) | res[1]) + 32768) >> 4;
+        uint16_t y = (((res[4] << 8) | res[3]) + 32768) >> 4;
+        uint16_t z = (((res[6] << 8) | res[5]) + 32768) >> 4;
+
+        uint8_t acc_ble_buffer[BLE_DIAGW_MAX_ACC_CHAR_LEN] = {0};
+
+        acc_ble_buffer[TIMESTAMP_LEN + 0] = (x & 0x0ff0) >> 4;
+        acc_ble_buffer[TIMESTAMP_LEN + 1] = (x & 0x000f) << 4;
+        acc_ble_buffer[TIMESTAMP_LEN + 2] = (y & 0x0ff0) >> 4;
+        acc_ble_buffer[TIMESTAMP_LEN + 3] = (y & 0x000f) << 4;
+        acc_ble_buffer[TIMESTAMP_LEN + 4] = (z & 0x0ff0) >> 4;
+        acc_ble_buffer[TIMESTAMP_LEN + 5] = (z & 0x000f) << 4;
+
+        uint64_t timestamp = data_session_sample_timestamp_get(acc_idx_type);
+        memcpy((uint8_t *)&acc_ble_buffer[0], (uint8_t *)&timestamp, sizeof(timestamp));
+        ring_store(ACC_TYPE, acc_ble_buffer, sizeof(acc_ble_buffer));
+    }
+
     volatile static uint8_t temp_sampling_cntr = 0;
 
     // TEMP : 1hz
@@ -198,6 +220,14 @@ static void saadc_medic_callback(nrf_drv_saadc_evt_t const *p_event)
         temp_ble_buffer[TIMESTAMP_LEN + 3] = (temp1 & 0x00ff);
 
         ring_store(TEMP_TYPE, temp_ble_buffer, sizeof(temp_ble_buffer));
+
+        /*
+        uint8_t res[7]     = {0};
+        uint8_t command[7] = {0xe8, 0xe9, 0xea, 0xeb, 0xec, 0xed, 0x00}; // Reading acc : X_L, X_H, Y_L, Y_H, Z_L, Z_H
+        */
+        //lecture d'accéléro pour purger un éventuel retard de lecture
+        acc_spi_transfer(&command[0], (uint8_t *)&res[0], 7);
+
     }
 
     // Battery
@@ -207,30 +237,7 @@ static void saadc_medic_callback(nrf_drv_saadc_evt_t const *p_event)
         battery_voltage_update(adc_buffer_avg((nrf_saadc_value_t const *const)battery_samples_buffer, SAADC_MEDIC_CH_SAMPLES));
     }
 
-    // Acc
-    {
-        uint8_t res[7]     = {0};
-        uint8_t command[7] = {0xe8, 0xe9, 0xea, 0xeb, 0xec, 0xed, 0x00}; // Reading acc : X_L, X_H, Y_L, Y_H, Z_L, Z_H
-
-        acc_spi_transfer(&command[0], (uint8_t *)&res[0], 7);
-
-        uint16_t x = (((res[2] << 8) | res[1]) + 32768) >> 4;
-        uint16_t y = (((res[4] << 8) | res[3]) + 32768) >> 4;
-        uint16_t z = (((res[6] << 8) | res[5]) + 32768) >> 4;
-
-        uint8_t acc_ble_buffer[BLE_DIAGW_MAX_ACC_CHAR_LEN] = {0};
-
-        acc_ble_buffer[TIMESTAMP_LEN + 0] = (x & 0x0ff0) >> 4;
-        acc_ble_buffer[TIMESTAMP_LEN + 1] = (x & 0x000f) << 4;
-        acc_ble_buffer[TIMESTAMP_LEN + 2] = (y & 0x0ff0) >> 4;
-        acc_ble_buffer[TIMESTAMP_LEN + 3] = (y & 0x000f) << 4;
-        acc_ble_buffer[TIMESTAMP_LEN + 4] = (z & 0x0ff0) >> 4;
-        acc_ble_buffer[TIMESTAMP_LEN + 5] = (z & 0x000f) << 4;
-
-        uint64_t timestamp = data_session_sample_timestamp_get(acc_idx_type);
-        memcpy((uint8_t *)&acc_ble_buffer[0], (uint8_t *)&timestamp, sizeof(timestamp));
-        ring_store(ACC_TYPE, acc_ble_buffer, sizeof(acc_ble_buffer));
-    }
+    
 }
 
 /*--------------------------------------------------------------------------*/
