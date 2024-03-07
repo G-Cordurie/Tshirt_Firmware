@@ -115,11 +115,22 @@ void acc_spi_transfer(uint8_t const *tx_data, uint8_t *rx_data, uint8_t len)
 void acc_IT_off(void)
 {
     uint8_t acc_cmd[ACC_CFG_CMD_LEN];
+    uint8_t i;
 
     // INT1_CFG 0x30
     acc_cmd[0] = 0x30;
     acc_cmd[1] = 0x10; // 0x10  disable XLIE, YLIE and ZLIE interrupt generation,
     acc_spi_write(&acc_cmd[0], ACC_CFG_CMD_LEN);
+
+    uint8_t res[7]     = {0};
+    uint8_t command[7] = {0xe8, 0xe9, 0xea, 0xeb, 0xec, 0xed, 0x00}; // Reading acc : X_L, X_H, Y_L, Y_H, Z_L, Z_H
+   
+    for(i=0;i<32;i++)
+    {
+        //lecture d'accéléro pour purger un éventuel retard de lecture
+        acc_spi_transfer(&command[0], (uint8_t *)&res[0], 7);
+    }
+
 }
 
 /*--------------------------------------------------------------------------*/
